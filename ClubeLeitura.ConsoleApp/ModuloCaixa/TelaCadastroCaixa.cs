@@ -7,8 +7,8 @@ namespace ClubeLeitura.ConsoleApp
     public class TelaCadastroCaixa
     {
         Caixa caixa;
-        RepositorioCaixa repoCaixa = new();
 
+        public RepositorioCaixa repoCaixa = new();
         public Notificador notificador = new();
 
 

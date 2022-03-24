@@ -8,7 +8,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
 {
     public class RepositorioCaixa
     {
-        public Caixa[] caixas = new Caixa[10];
+        public Caixa[] caixas = new Caixa[50];
         public int numeroCaixa = 0;
 
         public int ObterPosicaoVazia()
@@ -129,5 +129,22 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             return false;
         }
         //=================================================================
+
+        public Caixa RetornarCaixaSelecionada(int numeroCaixa)
+        {
+            for (int i = 0; i < caixas.Length; i++)
+            {
+                if (caixas[i] != null)
+                {
+                    if(caixas[i].numero == numeroCaixa)
+                    {
+                        return caixas[i];
+                    }
+                }
+                else
+                    break;
+            }
+            return null;
+        }
     }
 }

@@ -10,8 +10,8 @@ namespace ClubeLeitura.ConsoleApp
     public class TelaCadastroAmigo
     {
         Amigo amigo;
-        RepositorioAmigo repoAmigo = new();
 
+        public RepositorioAmigo repoAmigo = new();
         public Notificador notificador = new();
 
 

@@ -9,6 +9,7 @@
  *  -Para sair, usuário deve digitar "s"
  */
 using System;
+using ClubeLeitura.ConsoleApp.ModuloEmprestimo;
 
 namespace ClubeLeitura.ConsoleApp
 {
@@ -19,7 +20,15 @@ namespace ClubeLeitura.ConsoleApp
             TelaMenuPrincipal menuPrincipal = new();
             TelaCadastroCaixa telaCadastroCaixa = new();
             TelaCadastroAmigo telaCadastroAmigo = new();
+            TelaCadastroRevista telaCadastroRevista = new();
+            TelaCadastroEmprestimo telaCadastroEmprestimo = new();
 
+            telaCadastroRevista.telaCaixa = telaCadastroCaixa;
+            telaCadastroRevista.repositorioCaixa = telaCadastroCaixa.repoCaixa;
+
+            telaCadastroEmprestimo.telaAmigo = telaCadastroAmigo;
+            telaCadastroEmprestimo.telaRevista = telaCadastroRevista;
+            
             while (true)
             {                
                 string opcaoMenuPrincipal = menuPrincipal.MostrarOpcoes();
@@ -51,24 +60,25 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else if (opcaoMenuPrincipal == "2")
                 {
-                    //string opcao = telaCadastroRevistas.MostrarOpcoes();
+                    string opcao = telaCadastroRevista.MostrarOpcoes();
 
-                    //if (opcao == "1")
-                    //{
-                    //    telaCadastroCaixa.InserirNovaRevista();
-                    //}
-                    //else if (opcao == "2")
-                    //{
-                    //    telaCadastroRevista.EditarRevista();
-                    //}
-                    //else if (opcao == "3")
-                    //{
-                    //    telaCadastroRevista.ExcluirRevista();
-                    //}
-                    //else if (opcao == "4")
-                    //{
-                    //    telaCadastroRevista.VisualizarRevista("Tela");
-                    //    Console.ReadLine();
+                    if (opcao == "1")
+                    {
+                        telaCadastroRevista.InserirNovaRevista();
+                    }
+                    else if (opcao == "2")
+                    {
+                        telaCadastroRevista.EditarRevista();
+                    }
+                    else if (opcao == "3")
+                    {
+                        telaCadastroRevista.ExcluirRevista();
+                    }
+                    else if (opcao == "4")
+                    {
+                        telaCadastroRevista.VisualizarRevistasCadastradas();
+                        Console.ReadKey();
+                    }
                 }
                 else if (opcaoMenuPrincipal == "3")
                 {
@@ -92,6 +102,31 @@ namespace ClubeLeitura.ConsoleApp
                     else if (opcao == "4")
                     {
                         telaCadastroAmigo.VisualizarAmigosCadastrados();
+                        Console.ReadKey();
+                    }
+                }
+                else if (opcaoMenuPrincipal == "4")
+                {
+                    string opcao = telaCadastroEmprestimo.MostrarOpcoes();
+
+                    if (opcao == "1")
+                    {
+                        telaCadastroEmprestimo.InserirNovoEmprestimo();
+                        Console.ReadKey();
+                    }
+                    else if (opcao == "2")
+                    {
+                        telaCadastroEmprestimo.EditarEmprestimo();
+                        Console.ReadKey();
+                    }
+                    else if (opcao == "3")
+                    {
+                        telaCadastroEmprestimo.ExcluirEmprestimo();
+                        Console.ReadKey();
+                    }
+                    else if (opcao == "4")
+                    {
+                        telaCadastroEmprestimo.VisualizarEmprestimosCadastrados();
                         Console.ReadKey();
                     }
                 }

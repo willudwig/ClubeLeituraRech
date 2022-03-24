@@ -79,7 +79,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             }
         }
 
-
+    
         //Validações
         public bool VerificarVetorCaixasVazio()
         {
@@ -129,6 +129,24 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             return false;
         }
         //=================================================================
+
+
+        public Amigo RetornarAmigoSelecionado(int opcao)
+        {
+            for (int i = 0; i < amigos.Length; i++)
+            {
+                if (amigos[i] != null)
+                {
+                    if (amigos[i].id == opcao)
+                    {
+                        return amigos[i];
+                    }
+                }
+                else
+                    break;
+            }
+            return null;
+        }
     }
 }
 
