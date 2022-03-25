@@ -45,6 +45,9 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 
             emprestimo = InputarEmprestimo();
 
+            if (emprestimo == null)
+                return;
+
             repoEmp.Inserir(emprestimo);
 
             notificador.ApresentarMensagem("Emprestimo inserido com sucesso!", Notificador.Mensagem.sucesso);
@@ -145,7 +148,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             //Escolhendo Amigo
             Console.WriteLine("Escolha o amigo: \n");
 
-            telaAmigo.VisualizarAmigosCadastrados();
+             if (telaAmigo.VisualizarAmigosCadastrados() == false)
+            {
+                return null;
+            }
 
             int opcao;
 
@@ -177,7 +183,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             //Escolhendo Revista
             Console.WriteLine("Escolha a revista: \n");
 
-            telaRevista.VisualizarRevistasCadastradas();
+            if (telaRevista.VisualizarRevistasCadastradas() == false)
+            {
+                return null;
+            }
 
             while (true)
             {

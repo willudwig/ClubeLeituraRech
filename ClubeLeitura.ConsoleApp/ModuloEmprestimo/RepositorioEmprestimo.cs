@@ -28,7 +28,8 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             emprestimo.numeroEmp = numeroEmp++;
 
             int posicaoVazia = ObterPosicaoVazia();
-
+            
+            emprestimo.numeroEmp = numeroEmp;
             emprestimos[posicaoVazia] = emprestimo;
         }
 
