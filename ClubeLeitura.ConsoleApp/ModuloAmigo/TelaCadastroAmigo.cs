@@ -43,7 +43,7 @@ namespace ClubeLeitura.ConsoleApp
 
             repoAmigo.Inserir(amigo);
 
-            notificador.ApresentarMensagem("Amigo inserido com sucesso!", "Sucesso");
+            notificador.ApresentarMensagem("Amigo inserido com sucesso!", Notificador.Mensagem.sucesso);
         }
 
         public void EditarAmigo()
@@ -58,7 +58,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da caixa que deseja editar: ");
-                try { id = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", "Erro"); continue; }
+                try { id = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoAmigo.VerificarInputID(id) == true)
                 {
@@ -66,7 +66,7 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O ID digitado não existe\n", "Atencao");
+                    notificador.ApresentarMensagem("O ID digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
@@ -75,7 +75,7 @@ namespace ClubeLeitura.ConsoleApp
             amigo.id = id;
             repoAmigo.Editar(amigo, amigo.id);
 
-            notificador.ApresentarMensagem("amigo editado com sucesso", "Sucesso");
+            notificador.ApresentarMensagem("amigo editado com sucesso", Notificador.Mensagem.sucesso);
         }
 
         public void ExcluirAmigo()
@@ -90,7 +90,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da caixa que deseja excluir: ");
-                try { id = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", "Erro"); continue; }
+                try { id = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoAmigo.VerificarInputID(id) == true)
                 {
@@ -98,14 +98,14 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O ID digitado não existe\n", "Atencao");
+                    notificador.ApresentarMensagem("O ID digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
 
             repoAmigo.Excluir(id);
 
-            notificador.ApresentarMensagem("Amigo excluído com sucesso", "Sucesso");
+            notificador.ApresentarMensagem("Amigo excluído com sucesso", Notificador.Mensagem.sucesso);
         }
 
         public bool VisualizarAmigosCadastrados()
@@ -114,7 +114,7 @@ namespace ClubeLeitura.ConsoleApp
 
             if (repoAmigo.VerificarVetorCaixasVazio() == true)
             {
-                notificador.ApresentarMensagem("Registro de amigos vazio", "Atencao");
+                notificador.ApresentarMensagem("Registro de amigos vazio", Notificador.Mensagem.atencao);
                 return false;
             }
             else
@@ -138,19 +138,60 @@ namespace ClubeLeitura.ConsoleApp
         {
             Amigo amigo = new();
 
-            Console.Write("Nome: ");
-            amigo.nome = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Nome: ");
+                amigo.nome = Console.ReadLine();
 
-            Console.Write("Nome Responsável: ");
-            amigo.nomeResp = Console.ReadLine();
+                if (amigo.ValidarNome() == Amigo.Status.inválido)
+                {
+                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    continue;
+                }
+                else
+                    break;
+            }
 
-            Console.Write("Endereço: ");
-            amigo.endereco = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Nome Responsável: ");
+                amigo.nomeResp = Console.ReadLine();
+
+                if (amigo.ValidarNomeResp() == Amigo.Status.inválido)
+                {
+                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    continue;
+                }
+                else
+                    break;
+            }
+
+            while (true)
+            {
+                Console.Write("Endereço: ");
+                amigo.endereco = Console.ReadLine();
+
+                if (amigo.ValidarEndereco() == Amigo.Status.inválido)
+                {
+                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    continue;
+                }
+                else
+                    break;
+            }
 
             while (true)
             {
                 Console.Write("Telefone: ");
-                try { amigo.telefone = int.Parse(Console.ReadLine()); break; } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n","Erro"); continue; };
+                try { amigo.telefone = int.Parse(Console.ReadLine()); break; } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n",Notificador.Mensagem.erro); continue; };
+
+                if (amigo.ValidarTeleofone() == Amigo.Status.inválido )
+                {
+                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    continue;
+                }
+                else
+                    break;
             }
    
             return amigo;

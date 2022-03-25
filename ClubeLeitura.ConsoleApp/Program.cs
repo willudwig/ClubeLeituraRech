@@ -10,6 +10,10 @@
  */
 using System;
 using ClubeLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeLeitura.ConsoleApp.ModuloCaixa;
+using ClubeLeitura.ConsoleApp.ModuloRevista;
+using ClubeLeitura.ConsoleApp.ModuloAmigo;
+
 
 namespace ClubeLeitura.ConsoleApp
 {
@@ -28,7 +32,7 @@ namespace ClubeLeitura.ConsoleApp
 
             telaCadastroEmprestimo.telaAmigo = telaCadastroAmigo;
             telaCadastroEmprestimo.telaRevista = telaCadastroRevista;
-            
+
             while (true)
             {                
                 string opcaoMenuPrincipal = menuPrincipal.MostrarOpcoes();
@@ -65,14 +69,17 @@ namespace ClubeLeitura.ConsoleApp
                     if (opcao == "1")
                     {
                         telaCadastroRevista.InserirNovaRevista();
+                        Console.ReadKey();
                     }
                     else if (opcao == "2")
                     {
                         telaCadastroRevista.EditarRevista();
+                        Console.ReadKey();
                     }
                     else if (opcao == "3")
                     {
                         telaCadastroRevista.ExcluirRevista();
+                        Console.ReadKey();
                     }
                     else if (opcao == "4")
                     {
@@ -134,11 +141,11 @@ namespace ClubeLeitura.ConsoleApp
                 {
                     Console.Clear();
                     Notificador noticiaProgram = new();
-                    noticiaProgram.ApresentarMensagem("Programa Finalizado", "Sucesso");
+                    noticiaProgram.ApresentarMensagem("Programa Finalizado", Notificador.Mensagem.sucesso);
                     Console.ReadKey();
                     Environment.Exit(0);
                 }
             }
-        }       
+        }
     }
 }

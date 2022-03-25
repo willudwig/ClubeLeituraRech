@@ -40,7 +40,7 @@ namespace ClubeLeitura.ConsoleApp
 
             repoCaixa.Inserir(caixa);
 
-            notificador.ApresentarMensagem("Caixa inserida com sucesso!", "Sucesso");
+            notificador.ApresentarMensagem("Caixa inserida com sucesso!", Notificador.Mensagem.sucesso);
         }
 
         public void EditarCaixa()
@@ -55,7 +55,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da caixa que deseja editar: ");
-                try { numCaixa = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", "Erro"); continue; }
+                try { numCaixa = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoCaixa.VerificarInputNumeroCaixa(numCaixa) == true)
                 {
@@ -63,7 +63,7 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n","Atencao");
+                    notificador.ApresentarMensagem("O número digitado não existe\n",Notificador.Mensagem.atencao);
                     continue;
                 }
             }
@@ -72,7 +72,7 @@ namespace ClubeLeitura.ConsoleApp
             caixa.numero = numCaixa;
             repoCaixa.Editar(caixa, caixa.numero);
 
-            notificador.ApresentarMensagem("Caixa editada com sucesso", "Sucesso");
+            notificador.ApresentarMensagem("Caixa editada com sucesso", Notificador.Mensagem.sucesso);
         }
 
         public void ExcluirCaixa()
@@ -87,7 +87,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da caixa que deseja excluir: ");
-                try { numCaixa = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", "Erro"); continue; }
+                try { numCaixa = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoCaixa.VerificarInputNumeroCaixa(numCaixa) == true)
                 {
@@ -95,14 +95,14 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n", "Atencao");
+                    notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
 
             repoCaixa.Excluir(numCaixa);
 
-            notificador.ApresentarMensagem("Caixa excluída com sucesso", "Sucesso");
+            notificador.ApresentarMensagem("Caixa excluída com sucesso", Notificador.Mensagem.sucesso);
         }
 
         public bool VisualizarCaixasCadastradas()
@@ -111,13 +111,12 @@ namespace ClubeLeitura.ConsoleApp
 
             if (repoCaixa.VerificarVetorCaixasVazio() == true)
             {
-                notificador.ApresentarMensagem("Registro de caixas vazio", "Atencao");
+                notificador.ApresentarMensagem("Registro de caixas vazio", Notificador.Mensagem.atencao);
                 return false;
             }
             else
             {
                 repoCaixa.Visualizar();
-                Console.WriteLine();
                 return true;
             }
         }
@@ -136,8 +135,19 @@ namespace ClubeLeitura.ConsoleApp
         {
             Caixa caixa = new();
 
-            Console.Write("Digite a cor: ");
-            caixa.cor = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Digite a cor: ");
+                caixa.cor = Console.ReadLine();
+
+                if (caixa.ValidarCor() == Caixa.Status.inválido)
+                {
+                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    continue;
+                }
+                else
+                    break;
+            }
 
             while (true)
             {
@@ -146,7 +156,12 @@ namespace ClubeLeitura.ConsoleApp
 
                 if (repoCaixa.VerificarMesmaEtiquetasInserir(caixa) == true)
                 {
-                    notificador.ApresentarMensagem("A etiqueta digitada já existe\n", "Atencao");
+                    notificador.ApresentarMensagem("A etiqueta digitada já existe\n", Notificador.Mensagem.atencao);
+                    continue;
+                }
+                else if (caixa.ValidarEtiqueta() == Caixa.Status.inválido)
+                {
+                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else

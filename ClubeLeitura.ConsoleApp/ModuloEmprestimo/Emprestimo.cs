@@ -17,9 +17,32 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
         public Revista revista;
         public DateTime dataPegou;
         public DateTime dataDevolveu;
-        public Status status = new();
+        public StatusEmprestimo status = new();
 
-        public enum Status
+
+        public StatusValidacao ValidarDataPegou()
+        {
+            StatusValidacao validacao = (StatusValidacao)0;
+
+            if (string.IsNullOrEmpty(dataPegou.ToString()))
+                validacao = (StatusValidacao)1;
+
+            return validacao;
+        }
+
+        public StatusValidacao ValidarDataDevolveu()
+        {
+            StatusValidacao validacao = (StatusValidacao)0;
+
+            if (string.IsNullOrEmpty(dataDevolveu.ToString()))
+                validacao = (StatusValidacao)1;
+
+            return validacao;
+        }
+
+        public enum StatusValidacao { válido, inválido }
+
+        public enum StatusEmprestimo
         {
             Aberto, Fechado
         } 

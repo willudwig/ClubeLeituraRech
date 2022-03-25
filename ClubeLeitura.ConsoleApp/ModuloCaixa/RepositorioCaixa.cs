@@ -76,6 +76,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
                 Console.WriteLine("Número: " + caixas[i].numero);
                 Console.WriteLine("Cor: " + caixas[i].cor);
                 Console.WriteLine("Etiqueta: " + caixas[i].etiqueta);
+                Console.WriteLine();
             }
         }
 

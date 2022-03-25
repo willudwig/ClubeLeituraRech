@@ -76,6 +76,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
                 Console.WriteLine("Responsável: " + amigos[i].nomeResp);
                 Console.WriteLine("Telefone: " + amigos[i].telefone);
                 Console.WriteLine("Endereço: " + amigos[i].endereco);
+                Console.WriteLine();
             }
         }
 

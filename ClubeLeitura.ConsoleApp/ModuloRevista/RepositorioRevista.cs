@@ -67,6 +67,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
                 Console.WriteLine("Edição: " + revistas[i].edicao);
                 Console.WriteLine("Ano: " + revistas[i].ano);
                 Console.WriteLine("Caixa: " + revistas[i].caixa.cor);
+                Console.WriteLine();
             }
         }
 

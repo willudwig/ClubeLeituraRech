@@ -77,6 +77,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                 Console.WriteLine("Amigo: " + emprestimos[i].amigo.nome);
                 Console.WriteLine("Revista: " + emprestimos[i].revista.colecao);
                 Console.WriteLine("Edição da revista: " + emprestimos[i].revista.edicao);
+                Console.WriteLine();
             }
         }
 
