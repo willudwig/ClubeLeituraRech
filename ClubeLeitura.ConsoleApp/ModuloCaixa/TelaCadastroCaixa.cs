@@ -8,9 +8,16 @@ namespace ClubeLeitura.ConsoleApp
     {
         Caixa caixa;
 
-        public RepositorioCaixa repoCaixa = new();
-        public Notificador notificador = new();
+        RepositorioCaixa repoCaixa = new();
+        Notificador notificador = new();
 
+
+        public RepositorioCaixa RepoCaixa
+        {
+            get { return repoCaixa; }
+            set { repoCaixa = value; }
+
+        }
 
         public string MostrarOpcoes()
         {
@@ -69,8 +76,8 @@ namespace ClubeLeitura.ConsoleApp
             }
        
             caixa = InputarCaixa();
-            caixa.numero = numCaixa;
-            repoCaixa.Editar(caixa, caixa.numero);
+            caixa.Numero = numCaixa;
+            repoCaixa.Editar(caixa, caixa.Numero);
 
             notificador.ApresentarMensagem("Caixa editada com sucesso", Notificador.Mensagem.sucesso);
         }
@@ -138,7 +145,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite a cor: ");
-                caixa.cor = Console.ReadLine();
+                caixa.Cor = Console.ReadLine();
 
                 if (caixa.ValidarCor() == Caixa.Status.inválido)
                 {
@@ -152,7 +159,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite a etiqueta: ");
-                caixa.etiqueta = Console.ReadLine();
+                caixa.Etiqueta = Console.ReadLine();
 
                 if (repoCaixa.VerificarMesmaEtiquetasInserir(caixa) == true)
                 {

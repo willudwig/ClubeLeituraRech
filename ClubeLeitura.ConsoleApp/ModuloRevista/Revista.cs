@@ -6,13 +6,39 @@ namespace ClubeLeitura.ConsoleApp
 {
     public class Revista
     {
-        public int numeroRevista;
-        public string colecao;
-        public int edicao;
-        public int ano;
-        public Caixa caixa;
+        int numeroRevista;
+        string colecao;
+        int edicao;
+        int ano;
+        Caixa caixa;
 
-        
+        public int NumeroRevista  
+        {
+            get { return numeroRevista; }
+            set { numeroRevista = value; }
+        }
+        public string Colecao     
+        {
+            get { return colecao; }
+            set { colecao = value; }
+        }
+        public int Edicao         
+        {
+            get { return edicao; }
+            set { edicao = value; }
+        }
+        public int Ano            
+        {
+            get { return ano; }
+            set { ano = value; }
+         }
+        public Caixa Caixa
+        {
+            get { return caixa; }
+            set { caixa = value; }
+        }
+
+
 
         public Status ValidarAno()
         {

@@ -2,9 +2,28 @@
 {
     public class Caixa
     {
-        public int numero;
-        public string cor;
-        public string etiqueta;
+        int numero;
+        string cor;
+        string etiqueta;
+
+        public string Cor
+        {
+            get { return cor; }
+            set { cor = value; }
+        }
+
+        public int Numero
+        {
+            get { return numero; }
+            set { numero = value; }
+        }
+
+        public string Etiqueta
+        {
+            get { return etiqueta; }
+            set { etiqueta = value; }
+        }
+
 
         public Status ValidarEtiqueta()
         {

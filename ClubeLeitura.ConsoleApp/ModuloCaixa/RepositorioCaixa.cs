@@ -24,7 +24,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
 
         public void Inserir(Caixa caixa)
         {
-            caixa.numero = numeroCaixa++;
+            caixa.Numero = numeroCaixa++;
 
             int posicaoVazia = ObterPosicaoVazia();
 
@@ -38,7 +38,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             {
                 if (caixas[i] != null)
                 {
-                    if (caixas[i].numero == numcaixa)
+                    if (caixas[i].Numero == numcaixa)
                     {
                         caixas[i] = novaCaixa;
                         break;
@@ -55,7 +55,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             {
                 if (caixas[i] != null)
                 {
-                    if (caixas[i].numero == numcaixa)
+                    if (caixas[i].Numero == numcaixa)
                     {
                         caixas[i] = null;
                         break;
@@ -73,9 +73,9 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
                 if (caixas[i] == null)
                     continue;
 
-                Console.WriteLine("Número: " + caixas[i].numero);
-                Console.WriteLine("Cor: " + caixas[i].cor);
-                Console.WriteLine("Etiqueta: " + caixas[i].etiqueta);
+                Console.WriteLine("Número: " + caixas[i].Numero);
+                Console.WriteLine("Cor: " + caixas[i].Cor);
+                Console.WriteLine("Etiqueta: " + caixas[i].Etiqueta);
                 Console.WriteLine();
             }
         }
@@ -106,7 +106,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
                 {
                     continue;
                 }
-                else if (caixas[i].etiqueta == caixaInserida.etiqueta)
+                else if (caixas[i].Etiqueta == caixaInserida.Etiqueta)
                 {
                     return true;
                 }
@@ -122,7 +122,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
                 {
                     continue;
                 }
-                else if (caixas[i].numero == numeroDigitado)
+                else if (caixas[i].Numero == numeroDigitado)
                 {
                     return true;
                 }
@@ -137,7 +137,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             {
                 if (caixas[i] != null)
                 {
-                    if(caixas[i].numero == numeroCaixa)
+                    if(caixas[i].Numero == numeroCaixa)
                     {
                         return caixas[i];
                     }

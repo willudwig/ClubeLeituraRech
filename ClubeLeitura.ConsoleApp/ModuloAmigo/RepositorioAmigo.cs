@@ -8,7 +8,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
 {
     public class RepositorioAmigo
     {
-        public Amigo[] amigos = new Amigo[30];
+        Amigo[] amigos = new Amigo[30];
         int idAmigo = 0;
 
         public int ObterPosicaoVazia()
@@ -24,7 +24,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
 
         public void Inserir(Amigo amigo)
         {
-            amigo.id = idAmigo++;
+            amigo.Id = idAmigo++;
             int posicaoVazia = ObterPosicaoVazia();
             amigos[posicaoVazia] = amigo;
         }
@@ -36,7 +36,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             {
                 if (amigos[i] != null)
                 {
-                    if (amigos[i].id == id)
+                    if (amigos[i].Id == id)
                     {
                         amigos[i] = novoAmigo;
                         break;
@@ -53,7 +53,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             {
                 if (amigos[i] != null)
                 {
-                    if (amigos[i].id == id)
+                    if (amigos[i].Id == id)
                     {
                         amigos[i] = null;
                         break;
@@ -71,11 +71,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
                 if (amigos[i] == null)
                     continue;
 
-                Console.WriteLine("ID: " + amigos[i].id);
-                Console.WriteLine("Nome: " + amigos[i].nome);
-                Console.WriteLine("Responsável: " + amigos[i].nomeResp);
-                Console.WriteLine("Telefone: " + amigos[i].telefone);
-                Console.WriteLine("Endereço: " + amigos[i].endereco);
+                Console.WriteLine("ID: " + amigos[i].Id);
+                Console.WriteLine("Nome: " + amigos[i].Nome);
+                Console.WriteLine("Responsável: " + amigos[i].NomeResp);
+                Console.WriteLine("Telefone: " + amigos[i].Telefone);
+                Console.WriteLine("Endereço: " + amigos[i].Endereco);
                 Console.WriteLine();
             }
         }
@@ -106,7 +106,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
                 {
                     continue;
                 }
-                else if (amigos[i].nome == amigoInserido.nome)
+                else if (amigos[i].Nome == amigoInserido.Nome)
                 {
                     return true;
                 }
@@ -122,7 +122,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
                 {
                     continue;
                 }
-                else if (amigos[i].id == id)
+                else if (amigos[i].Id == id)
                 {
                     return true;
                 }
@@ -138,7 +138,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             {
                 if (amigos[i] != null)
                 {
-                    if (amigos[i].id == opcao)
+                    if (amigos[i].Id == opcao)
                     {
                         return amigos[i];
                     }

@@ -10,15 +10,30 @@ namespace ClubeLeitura.ConsoleApp
 {
     public class TelaCadastroRevista
     {
-        public int numeroCaixa;
-        public RepositorioRevista repoRevista = new();
-
+        RepositorioRevista repoRevista = new();
         Revista revista;
+        TelaCadastroCaixa telaCaixa;
+        RepositorioCaixa repositorioCaixa = new();
+        Notificador notificador = new();
 
-        public TelaCadastroCaixa telaCaixa;
-        public RepositorioCaixa repositorioCaixa = new();
 
-        public Notificador notificador = new();
+        public RepositorioRevista RepoRevista
+        {
+            get { return repoRevista; }
+        }
+
+        public TelaCadastroCaixa TelaCaixa
+        {
+            get { return telaCaixa; }
+            set { telaCaixa = value; }
+        }
+
+        public RepositorioCaixa RepositorioCaixa
+        {
+            get { return repositorioCaixa; }
+            set { repositorioCaixa = value; }
+        }
+
 
         public string MostrarOpcoes()
         {
@@ -68,7 +83,7 @@ namespace ClubeLeitura.ConsoleApp
             Caixa caixaSelecionada = repositorioCaixa.RetornarCaixaSelecionada(numRevista);
 
             Revista novaRevista = InputarRevista();
-            novaRevista.caixa = caixaSelecionada;
+            novaRevista.Caixa = caixaSelecionada;
 
             repoRevista.Inserir(novaRevista);
 
@@ -101,8 +116,8 @@ namespace ClubeLeitura.ConsoleApp
             }
 
             revista = InputarRevista();
-            revista.numeroRevista = numRevista;
-            repoRevista.Editar(revista, revista.numeroRevista);
+            revista.NumeroRevista = numRevista;
+            repoRevista.Editar(revista, revista.NumeroRevista);
 
             notificador.ApresentarMensagem("Revista editada com sucesso", Notificador.Mensagem.sucesso);
         }
@@ -155,6 +170,7 @@ namespace ClubeLeitura.ConsoleApp
             
         }
 
+        #region metodos privados
         private void MostrarTitulo(string titulo)
         {
             Console.Clear();
@@ -171,7 +187,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite a coleção: ");
-                revista.colecao = Console.ReadLine();
+                revista.Colecao = Console.ReadLine();
 
                 if (revista.ValidarColecao() == Revista.Status.inválido)
                 {
@@ -185,7 +201,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da edição: ");
-                try { revista.edicao = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { revista.Edicao = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (revista.ValidarEdicao() == Revista.Status.inválido)
                 {
@@ -199,7 +215,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o ano: ");
-                try { revista.ano = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { revista.Ano = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (revista.ValidarAno() == Revista.Status.inválido)
                 {
@@ -212,5 +228,6 @@ namespace ClubeLeitura.ConsoleApp
 
             return revista;
         }
+        #endregion
     }
 }

@@ -8,12 +8,12 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
 {
     public class RepositorioRevista
     {
-        public Revista[] revistas = new Revista[100];
-        public int numeroRevista = 0;
+        Revista[] revistas = new Revista[100];
+        int numeroRevista = 0;
 
         public void Inserir(Revista revista)
         {
-            revista.numeroRevista = numeroRevista++;
+            revista.NumeroRevista = numeroRevista++;
 
             int posicaoVazia = ObterPosicaoVazia();
 
@@ -27,7 +27,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             {
                 if (revistas[i] != null)
                 {
-                    if (revistas[i].numeroRevista == numrevista)
+                    if (revistas[i].NumeroRevista == numrevista)
                     {
                         revistas[i] = novaRevista;
                         break;
@@ -44,7 +44,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             {
                 if (revistas[i] != null)
                 {
-                    if (revistas[i].numeroRevista == numrevista)
+                    if (revistas[i].NumeroRevista == numrevista)
                     {
                         revistas[i] = null;
                         break;
@@ -62,11 +62,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
                 if (revistas[i] == null)
                     continue;
 
-                Console.WriteLine("Numero ID: " + revistas[i].numeroRevista);
-                Console.WriteLine("Coleção: " + revistas[i].colecao);
-                Console.WriteLine("Edição: " + revistas[i].edicao);
-                Console.WriteLine("Ano: " + revistas[i].ano);
-                Console.WriteLine("Caixa: " + revistas[i].caixa.cor);
+                Console.WriteLine("Numero ID: " + revistas[i].NumeroRevista);
+                Console.WriteLine("Coleção: " + revistas[i].Colecao);
+                Console.WriteLine("Edição: " + revistas[i].Edicao);
+                Console.WriteLine("Ano: " + revistas[i].Ano);
+                Console.WriteLine("Caixa: " + revistas[i].Caixa.Cor);
                 Console.WriteLine();
             }
         }
@@ -106,7 +106,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
                 {
                     continue;
                 }
-                else if (revistas[i].numeroRevista == numeroDigitado)
+                else if (revistas[i].NumeroRevista == numeroDigitado)
                 {
                     return true;
                 }
@@ -115,14 +115,13 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
         }
         //=============================================================
 
-
         public Revista RetornarRevistaSelecionada(int opcao)
         {
             for (int i = 0; i < revistas.Length; i++)
             {
                 if (revistas[i] != null)
                 {
-                    if (revistas[i].numeroRevista == opcao)
+                    if (revistas[i].NumeroRevista == opcao)
                     {
                         return revistas[i];
                     }

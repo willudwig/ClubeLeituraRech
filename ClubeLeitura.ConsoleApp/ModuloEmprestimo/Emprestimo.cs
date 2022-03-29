@@ -12,14 +12,35 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 {
     public class Emprestimo
     {
-        public int numeroEmp;
-        public Amigo amigo;
-        public Revista revista;
+        int numeroEmp;
+        Amigo amigo;
+        Revista revista;
         public DateTime dataPegou;
         public DateTime dataDevolveu;
-        public StatusEmprestimo status = new();
+        public StatusEmprestimo status;
 
 
+       
+
+        public Amigo Amigo
+        {
+            get { return amigo; }
+            set { amigo = value; }
+        }
+
+        public Revista Revista
+        {
+            get { return revista; }
+            set { revista = value; }
+        }
+
+        public int NumeroEmp
+        {
+            get { return numeroEmp; }
+            set { numeroEmp = value; }
+        }
+
+ 
         public StatusValidacao ValidarDataPegou()
         {
             StatusValidacao validacao = (StatusValidacao)0;

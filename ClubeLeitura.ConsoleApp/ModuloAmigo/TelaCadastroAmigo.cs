@@ -11,9 +11,13 @@ namespace ClubeLeitura.ConsoleApp
     {
         Amigo amigo;
 
-        public RepositorioAmigo repoAmigo = new();
-        public Notificador notificador = new();
+        RepositorioAmigo repoAmigo = new();
+        Notificador notificador = new();
 
+        public RepositorioAmigo RepoAmigo
+        {
+            get { return repoAmigo; }
+        }
 
         public string MostrarOpcoes()
         {
@@ -72,8 +76,8 @@ namespace ClubeLeitura.ConsoleApp
             }
 
             amigo = InputarAmigo();
-            amigo.id = id;
-            repoAmigo.Editar(amigo, amigo.id);
+            amigo.Id = id;
+            repoAmigo.Editar(amigo, amigo.Id);
 
             notificador.ApresentarMensagem("amigo editado com sucesso", Notificador.Mensagem.sucesso);
         }
@@ -141,7 +145,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Nome: ");
-                amigo.nome = Console.ReadLine();
+                amigo.Nome = Console.ReadLine();
 
                 if (amigo.ValidarNome() == Amigo.Status.inválido)
                 {
@@ -155,7 +159,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Nome Responsável: ");
-                amigo.nomeResp = Console.ReadLine();
+                amigo.NomeResp = Console.ReadLine();
 
                 if (amigo.ValidarNomeResp() == Amigo.Status.inválido)
                 {
@@ -169,7 +173,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Endereço: ");
-                amigo.endereco = Console.ReadLine();
+                amigo.Endereco = Console.ReadLine();
 
                 if (amigo.ValidarEndereco() == Amigo.Status.inválido)
                 {
@@ -183,9 +187,9 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Telefone: ");
-                try { amigo.telefone = int.Parse(Console.ReadLine()); break; } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n",Notificador.Mensagem.erro); continue; };
+                try { amigo.Telefone = int.Parse(Console.ReadLine()); break; } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n",Notificador.Mensagem.erro); continue; };
 
-                if (amigo.ValidarTeleofone() == Amigo.Status.inválido )
+                if (amigo.ValidarTelefone() == Amigo.Status.inválido )
                 {
                     notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
                     continue;
