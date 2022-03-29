@@ -16,7 +16,6 @@ namespace ClubeLeitura.ConsoleApp
         RepositorioCaixa repositorioCaixa = new();
         Notificador notificador = new();
 
-
         public RepositorioRevista RepoRevista
         {
             get { return repoRevista; }
@@ -59,19 +58,19 @@ namespace ClubeLeitura.ConsoleApp
         {
             MostrarTitulo("Inserindo Nova Revista");
 
-            if(telaCaixa.VisualizarCaixasCadastradas()== false)
+            if(telaCaixa.VisualizarCaixasCadastradas() == false)
             {
                 return;
             }
 
-            int numRevista;
+            int numCaixa;
 
             while (true)
             {
-                Console.Write("Selecione a caixa que a revista será inserida. Digite um número: ");
-                try { numRevista = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                Console.Write("Selecione a caixa em que a revista será inserida. Digite um número: ");
+                try { numCaixa = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
-                if (repositorioCaixa.VerificarInputNumeroCaixa(numRevista) == false)
+                if (repositorioCaixa.VerificarInputNumeroCaixa(numCaixa) == false)
                 {
                     notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
@@ -80,7 +79,7 @@ namespace ClubeLeitura.ConsoleApp
                     break;
             }
 
-            Caixa caixaSelecionada = repositorioCaixa.RetornarCaixaSelecionada(numRevista);
+            Caixa caixaSelecionada = repositorioCaixa.RetornarCaixaSelecionada(numCaixa);
 
             Revista novaRevista = InputarRevista();
             novaRevista.Caixa = caixaSelecionada;

@@ -2,20 +2,22 @@
 {
     public class Caixa
     {
+        static int contadorCaixa;
+        
         int numero;
         string cor;
         string etiqueta;
-
-        public string Cor
-        {
-            get { return cor; }
-            set { cor = value; }
-        }
 
         public int Numero
         {
             get { return numero; }
             set { numero = value; }
+        }
+
+        public string Cor
+        {
+            get { return cor; }
+            set { cor = value; }
         }
 
         public string Etiqueta
@@ -24,7 +26,10 @@
             set { etiqueta = value; }
         }
 
-
+        public Caixa()
+        {
+            numero = ++contadorCaixa;
+        }
         public Status ValidarEtiqueta()
         {
             Status validacao = (Status)0;

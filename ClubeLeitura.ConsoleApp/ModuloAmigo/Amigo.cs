@@ -8,6 +8,8 @@ namespace ClubeLeitura.ConsoleApp
 {
     public class Amigo
     {
+        static int contadorAmigo;
+
         int id;
         string nome;
         string nomeResp;
@@ -19,6 +21,7 @@ namespace ClubeLeitura.ConsoleApp
             get { return id; }
             set { id = value; }
         }
+
 
         public string Nome
         {
@@ -42,6 +45,11 @@ namespace ClubeLeitura.ConsoleApp
         {
             get { return telefone; }
             set { telefone = value; }
+        }
+
+        public Amigo()
+        {
+            id = ++contadorAmigo;
         }
 
 

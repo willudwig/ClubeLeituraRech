@@ -12,15 +12,14 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 {
     public class Emprestimo
     {
+        static int contadorEmprestimo;
+        
         int numeroEmp;
         Amigo amigo;
         Revista revista;
         public DateTime dataPegou;
         public DateTime dataDevolveu;
         public StatusEmprestimo status;
-
-
-       
 
         public Amigo Amigo
         {
@@ -38,6 +37,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
         {
             get { return numeroEmp; }
             set { numeroEmp = value; }
+        }
+
+        public Emprestimo()
+        {
+            numeroEmp = ++contadorEmprestimo;
         }
 
  

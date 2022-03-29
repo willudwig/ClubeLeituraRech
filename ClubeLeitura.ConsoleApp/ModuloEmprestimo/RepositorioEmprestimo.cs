@@ -10,33 +10,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
     public class RepositorioEmprestimo
     {
         Emprestimo[] emprestimos = new Emprestimo[50];
-        int numeroEmp = 0;
-
-        public int NumeroEmp
-        {
-            get { return numeroEmp; }
-            set { numeroEmp = value; }
-        }
-
-        public int ObterPosicaoVazia()
-        {
-            for (int i = 0; i < emprestimos.Length; i++)
-            {
-                if (emprestimos[i] == null)
-                    return i;
-            }
-
-            return -1;
-        }
-
+        
         public void Inserir(Emprestimo emprestimo)
         {
-            emprestimo.NumeroEmp = numeroEmp++;
-
-            int posicaoVazia = ObterPosicaoVazia();
-            
-            emprestimo.NumeroEmp = numeroEmp;
-            emprestimos[posicaoVazia] = emprestimo;
+           emprestimos[ObterPosicaoVazia()] = emprestimo;
         }
 
         public void Editar(Emprestimo novoEmp, int numEmp)
@@ -155,6 +132,17 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                     break;
             }
             return null;
+        }
+
+        private int ObterPosicaoVazia()
+        {
+            for (int i = 0; i < emprestimos.Length; i++)
+            {
+                if (emprestimos[i] == null)
+                    return i;
+            }
+
+            return -1;
         }
     }
 }

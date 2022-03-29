@@ -6,6 +6,7 @@ namespace ClubeLeitura.ConsoleApp
 {
     public class Revista
     {
+        static int contadorRevista; 
         int numeroRevista;
         string colecao;
         int edicao;
@@ -38,7 +39,10 @@ namespace ClubeLeitura.ConsoleApp
             set { caixa = value; }
         }
 
-
+        public Revista()
+        {
+            numeroRevista = ++contadorRevista;
+        }
 
         public Status ValidarAno()
         {

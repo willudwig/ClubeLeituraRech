@@ -9,15 +9,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
     public class RepositorioRevista
     {
         Revista[] revistas = new Revista[100];
-        int numeroRevista = 0;
 
         public void Inserir(Revista revista)
         {
-            revista.NumeroRevista = numeroRevista++;
-
-            int posicaoVazia = ObterPosicaoVazia();
-
-            revistas[posicaoVazia] = revista;
+            revistas[ ObterPosicaoVazia() ] = revista;
         }
 
         public void Editar(Revista novaRevista, int numrevista)

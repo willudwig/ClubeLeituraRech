@@ -24,11 +24,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
 
         public void Inserir(Caixa caixa)
         {
-            caixa.Numero = numeroCaixa++;
-
-            int posicaoVazia = ObterPosicaoVazia();
-
-            caixas[posicaoVazia] = caixa;
+            caixas[ObterPosicaoVazia()] = caixa;
         }
 
         public void Editar(Caixa novaCaixa, int numcaixa)

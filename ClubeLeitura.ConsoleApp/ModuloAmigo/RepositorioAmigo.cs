@@ -9,7 +9,6 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
     public class RepositorioAmigo
     {
         Amigo[] amigos = new Amigo[30];
-        int idAmigo = 0;
 
         public int ObterPosicaoVazia()
         {
@@ -24,9 +23,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
 
         public void Inserir(Amigo amigo)
         {
-            amigo.Id = idAmigo++;
-            int posicaoVazia = ObterPosicaoVazia();
-            amigos[posicaoVazia] = amigo;
+            amigos[ObterPosicaoVazia()] = amigo;
         }
 
         public void Editar(Amigo novoAmigo, int id)
