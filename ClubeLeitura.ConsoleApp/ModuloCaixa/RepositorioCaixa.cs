@@ -8,8 +8,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
 {
     public class RepositorioCaixa
     {
-        public Caixa[] caixas = new Caixa[50];
-        public int numeroCaixa = 0;
+        Caixa[] caixas = new Caixa[50];
 
         public int ObterPosicaoVazia()
         {

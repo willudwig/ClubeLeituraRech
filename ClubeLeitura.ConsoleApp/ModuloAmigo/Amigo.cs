@@ -53,7 +53,6 @@ namespace ClubeLeitura.ConsoleApp
         }
 
 
-
         public Status ValidarNome()
         {
             Status validacao = (Status)0;
