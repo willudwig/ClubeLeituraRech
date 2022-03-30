@@ -4,19 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ClubeLeitura.ConsoleApp.ModuloEmprestimo;
+using ClubeLeitura.ConsoleApp.Superclasse;
 
 namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 {
-    public class RepositorioEmprestimo
+    public class RepositorioEmprestimo : Repositorio<Emprestimo>
     {
         Emprestimo[] emprestimos = new Emprestimo[50];
         
-        public void Inserir(Emprestimo emprestimo)
+        public override void Inserir(Emprestimo emprestimo)
         {
-           emprestimos[ObterPosicaoVazia()] = emprestimo;
+           emprestimos[posicaoVazia] = emprestimo;
         }
 
-        public void Editar(Emprestimo novoEmp, int numEmp)
+        public override void Editar(Emprestimo novoEmp, int numEmp)
         {
             for (int i = 0; i < emprestimos.Length; i++)
             {
@@ -33,7 +34,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             }
         }
 
-        public void Excluir(int numEmp)
+        public override void Excluir(int numEmp)
         {
             for (int i = 0; i < emprestimos.Length; i++)
             {
@@ -50,7 +51,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             }
         }
 
-        public void Visualizar()
+        public override void Visualizar()
         {
             for (int i = 0; i < emprestimos.Length; i++)
             {
@@ -63,6 +64,23 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                 Console.WriteLine("Edição da revista: " + emprestimos[i].Revista.Edicao);
                 Console.WriteLine();
             }
+        }
+
+        public override Emprestimo RetornarObjetoSelecionado(int numeroEmp)
+        {
+            for (int i = 0; i < emprestimos.Length; i++)
+            {
+                if (emprestimos[i] != null)
+                {
+                    if (emprestimos[i].NumeroEmp == numeroEmp)
+                    {
+                        return emprestimos[i];
+                    }
+                }
+                else
+                    break;
+            }
+            return null;
         }
 
 
@@ -117,33 +135,6 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
         }
         //=================================================================
 
-        public Emprestimo RetornarEmprestimoSelecionado(int numeroEmp)
-        {
-            for (int i = 0; i < emprestimos.Length; i++)
-            {
-                if (emprestimos[i] != null)
-                {
-                    if (emprestimos[i].NumeroEmp == numeroEmp)
-                    {
-                        return emprestimos[i];
-                    }
-                }
-                else
-                    break;
-            }
-            return null;
-        }
-
-        private int ObterPosicaoVazia()
-        {
-            for (int i = 0; i < emprestimos.Length; i++)
-            {
-                if (emprestimos[i] == null)
-                    return i;
-            }
-
-            return -1;
-        }
     }
 }
         

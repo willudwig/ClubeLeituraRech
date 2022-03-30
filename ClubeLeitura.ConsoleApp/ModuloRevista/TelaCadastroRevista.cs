@@ -5,16 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using ClubeLeitura.ConsoleApp.ModuloCaixa;
 using ClubeLeitura.ConsoleApp.ModuloRevista;
+using ClubeLeitura.ConsoleApp.Superclasse;
+
 
 namespace ClubeLeitura.ConsoleApp
 {
-    public class TelaCadastroRevista
+    public class TelaCadastroRevista : TelaCadastro
     {
         RepositorioRevista repoRevista = new();
         Revista revista;
         TelaCadastroCaixa telaCaixa;
         RepositorioCaixa repositorioCaixa = new();
-        Notificador notificador = new();
+       
 
         public RepositorioRevista RepoRevista
         {
@@ -34,7 +36,7 @@ namespace ClubeLeitura.ConsoleApp
         }
 
 
-        public string MostrarOpcoes()
+        public override string MostrarOpcoes()
         {
             Console.Clear();
 
@@ -54,11 +56,11 @@ namespace ClubeLeitura.ConsoleApp
             return opcao;
         }
 
-        public void InserirNovaRevista()
+        public override void InserirNovoObjeto()
         {
             MostrarTitulo("Inserindo Nova Revista");
 
-            if(telaCaixa.VisualizarCaixasCadastradas() == false)
+            if(telaCaixa.VisualizarObjetosCadastrados() == false)
             {
                 return;
             }
@@ -68,32 +70,32 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Selecione a caixa em que a revista será inserida. Digite um número: ");
-                try { numCaixa = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { numCaixa = int.Parse(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repositorioCaixa.VerificarInputNumeroCaixa(numCaixa) == false)
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
                     break;
             }
 
-            Caixa caixaSelecionada = repositorioCaixa.RetornarCaixaSelecionada(numCaixa);
+            Caixa caixaSelecionada = repositorioCaixa.RetornarObjetoSelecionado(numCaixa);
 
             Revista novaRevista = InputarRevista();
             novaRevista.Caixa = caixaSelecionada;
 
             repoRevista.Inserir(novaRevista);
 
-            notificador.ApresentarMensagem("Revista inserida", Notificador.Mensagem.sucesso);
+            Notificador.ApresentarMensagem("Revista inserida", Notificador.Mensagem.sucesso);
         }
 
-        public void EditarRevista()
+        public override void EditarObjeto()
         {
             MostrarTitulo("Editando Revista");
 
-            if (VisualizarRevistasCadastradas() == false)
+            if (VisualizarObjetosCadastrados() == false)
                 return;
 
             int numRevista;
@@ -101,7 +103,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da revista que deseja editar: ");
-                try { numRevista = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { numRevista = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoRevista.VerificarInputNumeroRevista(numRevista) == true)
                 {
@@ -109,7 +111,7 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
@@ -118,14 +120,14 @@ namespace ClubeLeitura.ConsoleApp
             revista.NumeroRevista = numRevista;
             repoRevista.Editar(revista, revista.NumeroRevista);
 
-            notificador.ApresentarMensagem("Revista editada com sucesso", Notificador.Mensagem.sucesso);
+            Notificador.ApresentarMensagem("Revista editada com sucesso", Notificador.Mensagem.sucesso);
         }
 
-        public void ExcluirRevista()
+        public void ExcluirObjeto()
         {
             MostrarTitulo("Excluindo Revista");
 
-            if (VisualizarRevistasCadastradas() == false)
+            if (VisualizarObjetosCadastrados() == false)
                 return;
 
             int numRevista;
@@ -133,7 +135,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da revista que deseja excluir: ");
-                try { numRevista = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { numRevista = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoRevista.VerificarInputNumeroRevista(numRevista) == true)
                 {
@@ -141,23 +143,23 @@ namespace ClubeLeitura.ConsoleApp
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
 
             repoRevista.Excluir(numRevista);
 
-            notificador.ApresentarMensagem("Revista excluída com sucesso", Notificador.Mensagem.sucesso);
+            Notificador.ApresentarMensagem("Revista excluída com sucesso", Notificador.Mensagem.sucesso);
         }
 
-        public bool VisualizarRevistasCadastradas()
+        public bool VisualizarObjetosCadastrados()
         {
             MostrarTitulo("Visualização de Revistas");
 
             if (repoRevista.VerificarVetorRevistasVazio() == true)
             {
-                notificador.ApresentarMensagem("Registro de revistas vazio", Notificador.Mensagem.atencao);
+                Notificador.ApresentarMensagem("Registro de revistas vazio", Notificador.Mensagem.atencao);
                 return false;
             }
             else
@@ -169,15 +171,6 @@ namespace ClubeLeitura.ConsoleApp
             
         }
 
-        #region metodos privados
-        private void MostrarTitulo(string titulo)
-        {
-            Console.Clear();
-
-            Console.WriteLine(titulo);
-
-            Console.WriteLine();
-        }
 
         private Revista InputarRevista()
         {
@@ -190,7 +183,7 @@ namespace ClubeLeitura.ConsoleApp
 
                 if (revista.ValidarColecao() == Revista.Status.inválido)
                 {
-                    notificador.ApresentarMensagem("Campo inválido", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Campo inválido", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -200,11 +193,11 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o número da edição: ");
-                try { revista.Edicao = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { revista.Edicao = int.Parse(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (revista.ValidarEdicao() == Revista.Status.inválido)
                 {
-                    notificador.ApresentarMensagem("Número de edição inválido", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Número de edição inválido", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -214,11 +207,11 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite o ano: ");
-                try { revista.Ano = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { revista.Ano = int.Parse(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (revista.ValidarAno() == Revista.Status.inválido)
                 {
-                    notificador.ApresentarMensagem("Ano incorreto\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Ano incorreto\n", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else 
@@ -227,6 +220,6 @@ namespace ClubeLeitura.ConsoleApp
 
             return revista;
         }
-        #endregion
+
     }
 }

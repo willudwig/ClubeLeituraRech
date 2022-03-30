@@ -43,22 +43,22 @@ namespace ClubeLeitura.ConsoleApp
 
                     if (opcao == "1")
                     {
-                        telaCadastroCaixa.InserirNovaCaixa();
+                        telaCadastroCaixa.InserirNovoObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "2")
                     {
-                        telaCadastroCaixa.EditarCaixa();
+                        telaCadastroCaixa.EditarObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "3")
                     {
-                        telaCadastroCaixa.ExcluirCaixa();
+                        telaCadastroCaixa.ExcluirObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "4")
                     {
-                        telaCadastroCaixa.VisualizarCaixasCadastradas();
+                        telaCadastroCaixa.VisualizarObjetosCadastrados();
                         Console.ReadKey();
                     }
                 }
@@ -68,22 +68,22 @@ namespace ClubeLeitura.ConsoleApp
 
                     if (opcao == "1")
                     {
-                        telaCadastroRevista.InserirNovaRevista();
+                        telaCadastroRevista.InserirNovoObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "2")
                     {
-                        telaCadastroRevista.EditarRevista();
+                        telaCadastroRevista.EditarObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "3")
                     {
-                        telaCadastroRevista.ExcluirRevista();
+                        telaCadastroRevista.ExcluirObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "4")
                     {
-                        telaCadastroRevista.VisualizarRevistasCadastradas();
+                        telaCadastroRevista.VisualizarObjetosCadastrados();
                         Console.ReadKey();
                     }
                 }
@@ -93,22 +93,22 @@ namespace ClubeLeitura.ConsoleApp
 
                     if (opcao == "1")
                     {
-                        telaCadastroAmigo.InserirNovoAmigo();
+                        telaCadastroAmigo.InserirNovoObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "2")
                     {
-                        telaCadastroAmigo.EditarAmigo();
+                        telaCadastroAmigo.EditarObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "3")
                     {
-                        telaCadastroAmigo.ExcluirAmigo();
+                        telaCadastroAmigo.ExcluirObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "4")
                     {
-                        telaCadastroAmigo.VisualizarAmigosCadastrados();
+                        telaCadastroAmigo.VisualizarObjetosCadastrados();
                         Console.ReadKey();
                     }
                 }
@@ -118,22 +118,22 @@ namespace ClubeLeitura.ConsoleApp
 
                     if (opcao == "1")
                     {
-                        telaCadastroEmprestimo.InserirNovoEmprestimo();
+                        telaCadastroEmprestimo.InserirNovoObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "2")
                     {
-                        telaCadastroEmprestimo.EditarEmprestimo();
+                        telaCadastroEmprestimo.EditarObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "3")
                     {
-                        telaCadastroEmprestimo.ExcluirEmprestimo();
+                        telaCadastroEmprestimo.ExcluirObjeto();
                         Console.ReadKey();
                     }
                     else if (opcao == "4")
                     {
-                        telaCadastroEmprestimo.VisualizarEmprestimosCadastrados();
+                        telaCadastroEmprestimo.VisualizarObjetosCadastrados();
                         Console.ReadKey();
                     }
                 }

@@ -3,30 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClubeLeitura.ConsoleApp.Superclasse;
 
 namespace ClubeLeitura.ConsoleApp.ModuloCaixa
 {
-    public class RepositorioCaixa
+    public class RepositorioCaixa : Repositorio<Caixa>
     {
         Caixa[] caixas = new Caixa[50];
 
-        public int ObterPosicaoVazia()
-        {
-            for (int i = 0; i < caixas.Length; i++)
-            {
-                if (caixas[i] == null)
-                    return i;
-            }
 
-            return -1;
+        public override void Inserir(Caixa caixa)
+        {
+            caixas[posicaoVazia] = caixa;
         }
 
-        public void Inserir(Caixa caixa)
-        {
-            caixas[ObterPosicaoVazia()] = caixa;
-        }
-
-        public void Editar(Caixa novaCaixa, int numcaixa)
+        public override void Editar(Caixa novaCaixa, int numcaixa)
         {
             
             for (int i = 0; i < caixas.Length; i++)
@@ -44,7 +35,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             }
         }
 
-        public void Excluir(int numcaixa)
+        public override void Excluir(int numcaixa)
         {
             for (int i = 0; i < caixas.Length; i++)
             {
@@ -61,7 +52,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             }
         }
 
-        public void Visualizar()
+        public override void Visualizar()
         {
             for (int i = 0; i < caixas.Length; i++)
             {
@@ -73,6 +64,23 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
                 Console.WriteLine("Etiqueta: " + caixas[i].Etiqueta);
                 Console.WriteLine();
             }
+        }
+
+        public override Caixa RetornarObjetoSelecionado(int numeroCaixa)
+        {
+            for (int i = 0; i < caixas.Length; i++)
+            {
+                if (caixas[i] != null)
+                {
+                    if (caixas[i].Numero == numeroCaixa)
+                    {
+                        return caixas[i];
+                    }
+                }
+                else
+                    break;
+            }
+            return null;
         }
 
 
@@ -126,21 +134,6 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
         }
         //=================================================================
 
-        public Caixa RetornarCaixaSelecionada(int numeroCaixa)
-        {
-            for (int i = 0; i < caixas.Length; i++)
-            {
-                if (caixas[i] != null)
-                {
-                    if(caixas[i].Numero == numeroCaixa)
-                    {
-                        return caixas[i];
-                    }
-                }
-                else
-                    break;
-            }
-            return null;
-        }
+       
     }
 }

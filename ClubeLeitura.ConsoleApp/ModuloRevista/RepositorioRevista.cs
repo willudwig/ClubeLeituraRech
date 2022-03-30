@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClubeLeitura.ConsoleApp.Superclasse;
 
 namespace ClubeLeitura.ConsoleApp.ModuloRevista
 {
-    public class RepositorioRevista
+    public class RepositorioRevista : Repositorio<Revista>
     {
         Revista[] revistas = new Revista[100];
 
-        public void Inserir(Revista revista)
+        public override void Inserir(Revista revista)
         {
-            revistas[ ObterPosicaoVazia() ] = revista;
+            revistas[posicaoVazia] = revista;
         }
 
-        public void Editar(Revista novaRevista, int numrevista)
+        public override void Editar(Revista novaRevista, int numrevista)
         {
 
             for (int i = 0; i < revistas.Length; i++)
@@ -33,7 +34,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             }
         }
 
-        public void Excluir(int numrevista)
+        public override void Excluir(int numrevista)
         {
             for (int i = 0; i < revistas.Length; i++)
             {
@@ -50,7 +51,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             }
         }
 
-        public void Visualizar()
+        public override void Visualizar()
         {
             for (int i = 0; i < revistas.Length; i++)
             {
@@ -66,18 +67,25 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             }
         }
 
-        private int ObterPosicaoVazia()
+        public override Revista RetornarObjetoSelecionado(int opcao)
         {
             for (int i = 0; i < revistas.Length; i++)
             {
-                if (revistas[i] == null)
-                    return i;
+                if (revistas[i] != null)
+                {
+                    if (revistas[i].NumeroRevista == opcao)
+                    {
+                        return revistas[i];
+                    }
+                }
+                else
+                    break;
             }
-
-            return -1;
+            return null;
         }
 
-       //Validações
+
+        //Validações
         public bool VerificarVetorRevistasVazio()
         {
             for (int i = 0; i < revistas.Length; i++)
@@ -110,22 +118,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
         }
         //=============================================================
 
-        public Revista RetornarRevistaSelecionada(int opcao)
-        {
-            for (int i = 0; i < revistas.Length; i++)
-            {
-                if (revistas[i] != null)
-                {
-                    if (revistas[i].NumeroRevista == opcao)
-                    {
-                        return revistas[i];
-                    }
-                }
-                else
-                    break;
-            }
-            return null;
-        }
+     
 
     }
 }

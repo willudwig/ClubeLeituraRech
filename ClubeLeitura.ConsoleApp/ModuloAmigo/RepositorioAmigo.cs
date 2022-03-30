@@ -3,30 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ClubeLeitura.ConsoleApp.Superclasse;
 
 namespace ClubeLeitura.ConsoleApp.ModuloAmigo
 {
-    public class RepositorioAmigo
+    public class RepositorioAmigo : Repositorio<Amigo>
     {
         Amigo[] amigos = new Amigo[30];
 
-        public int ObterPosicaoVazia()
-        {
-            for (int i = 0; i < amigos.Length; i++)
-            {
-                if (amigos[i] == null)
-                    return i;
-            }
 
-            return -1;
+        public override void Inserir(Amigo amigo)
+        {
+            amigos[posicaoVazia] = amigo;
         }
 
-        public void Inserir(Amigo amigo)
-        {
-            amigos[ObterPosicaoVazia()] = amigo;
-        }
-
-        public void Editar(Amigo novoAmigo, int id)
+        public override void Editar(Amigo novoAmigo, int id)
         {
 
             for (int i = 0; i < amigos.Length; i++)
@@ -44,7 +35,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             }
         }
 
-        public void Excluir(int id)
+        public override void Excluir(int id)
         {
             for (int i = 0; i < amigos.Length; i++)
             {
@@ -61,7 +52,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             }
         }
 
-        public void Visualizar()
+        public override void Visualizar()
         {
             for (int i = 0; i < amigos.Length; i++)
             {
@@ -77,7 +68,24 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
             }
         }
 
-    
+        public override Amigo RetornarObjetoSelecionado(int opcao)
+        {
+            for (int i = 0; i < amigos.Length; i++)
+            {
+                if (amigos[i] != null)
+                {
+                    if (amigos[i].Id == opcao)
+                    {
+                        return amigos[i];
+                    }
+                }
+                else
+                    break;
+            }
+            return null;
+        }
+
+
         //Validações
         public bool VerificarVetorCaixasVazio()
         {
@@ -129,22 +137,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
         //=================================================================
 
 
-        public Amigo RetornarAmigoSelecionado(int opcao)
-        {
-            for (int i = 0; i < amigos.Length; i++)
-            {
-                if (amigos[i] != null)
-                {
-                    if (amigos[i].Id == opcao)
-                    {
-                        return amigos[i];
-                    }
-                }
-                else
-                    break;
-            }
-            return null;
-        }
+      
     }
 }
 

@@ -5,19 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using ClubeLeitura.ConsoleApp.ModuloEmprestimo;
 using ClubeLeitura.ConsoleApp.ModuloAmigo;
+using ClubeLeitura.ConsoleApp.Superclasse;
 
 
 namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 {
-    public class TelaCadastroEmprestimo
+    public class TelaCadastroEmprestimo : TelaCadastro
     {
         Emprestimo emprestimo;
-
         RepositorioEmprestimo repoEmp = new();
-        Notificador notificador = new();
-
         TelaCadastroAmigo telaAmigo;
         TelaCadastroRevista telaRevista;
+
 
         public TelaCadastroAmigo TelaAmigo
         {
@@ -30,7 +29,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
         }
 
  
-        public string MostrarOpcoes()
+        public override string MostrarOpcoes()
         {
             Console.Clear();
 
@@ -50,7 +49,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             return opcao;
         }
 
-        public void InserirNovoEmprestimo()
+        public override void InserirNovoObjeto()
         {
             MostrarTitulo("Inserindo novo Emprestimo");
 
@@ -61,14 +60,14 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 
             repoEmp.Inserir(emprestimo);
 
-            notificador.ApresentarMensagem("Emprestimo inserido com sucesso!", Notificador.Mensagem.sucesso);
+            Notificador.ApresentarMensagem("Emprestimo inserido com sucesso!", Notificador.Mensagem.sucesso);
         }
 
-        public void EditarEmprestimo()
+        public override void EditarObjeto()
         {
             MostrarTitulo("Editando Emprestimo");
 
-            if (VisualizarEmprestimosCadastrados() == false)
+            if (VisualizarObjetosCadastrados() == false)
                 return;
 
             int numEmprestimo;
@@ -76,7 +75,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true)
             {
                 Console.Write("Digite o número do empréstimo que deseja editar: ");
-                try { numEmprestimo = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { numEmprestimo = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoEmp.VerificarInputNumeroEmprestimo(numEmprestimo) == true)
                 {
@@ -84,7 +83,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
@@ -93,14 +92,14 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             emprestimo.NumeroEmp = numEmprestimo;
             repoEmp.Editar(emprestimo, emprestimo.NumeroEmp);
 
-            notificador.ApresentarMensagem("Emprestimo editado com sucesso", Notificador.Mensagem.sucesso);
+            Notificador.ApresentarMensagem("Emprestimo editado com sucesso", Notificador.Mensagem.sucesso);
         }
 
-        public void ExcluirEmprestimo()
+        public override void ExcluirObjeto()
         {
             MostrarTitulo("Excluindo Emprestimo");
 
-            if (VisualizarEmprestimosCadastrados() == false)
+            if (VisualizarObjetosCadastrados() == false)
                 return;
 
             int numEmp;
@@ -108,7 +107,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true)
             {
                 Console.Write("Digite o número do empréstimo que deseja excluir: ");
-                try { numEmp = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { numEmp = Convert.ToInt32(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (repoEmp.VerificarInputNumeroEmprestimo(numEmp) == true)
                 {
@@ -116,23 +115,23 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                 }
                 else
                 {
-                    notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("O número digitado não existe\n", Notificador.Mensagem.atencao);
                     continue;
                 }
             }
 
             repoEmp.Excluir(numEmp);
 
-            notificador.ApresentarMensagem("Empréstimo excluído com sucesso", Notificador.Mensagem.sucesso);
+            Notificador.ApresentarMensagem("Empréstimo excluído com sucesso", Notificador.Mensagem.sucesso);
         }
 
-        public bool VisualizarEmprestimosCadastrados()
+        public override bool VisualizarObjetosCadastrados()
         {
             MostrarTitulo("Visualização de Caixas");
 
             if (repoEmp.VerificarVetorEmprestimosVazio() == true)
             {
-                notificador.ApresentarMensagem("Registro de emprestimos vazio",Notificador.Mensagem.atencao);
+                Notificador.ApresentarMensagem("Registro de emprestimos vazio",Notificador.Mensagem.atencao);
                 return false;
             }
             else
@@ -143,17 +142,6 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             }
         }
 
-
-        #region metodos privados
-        private void MostrarTitulo(string titulo)
-        {
-            Console.Clear();
-
-            Console.WriteLine(titulo);
-
-            Console.WriteLine();
-        }
-
         private Emprestimo InputarEmprestimo()
         {
             Emprestimo emprestimo = new();
@@ -161,7 +149,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             //Escolhendo Amigo
             Console.WriteLine("Escolha o amigo: \n");
 
-             if (telaAmigo.VisualizarAmigosCadastrados() == false)
+             if (telaAmigo.VisualizarObjetosCadastrados() == false)
             {
                 return null;
             }
@@ -171,16 +159,16 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true)
             {
                 Console.Write("\nDigite um número: ");
-                try { opcao = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { opcao = int.Parse(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (telaAmigo.RepoAmigo.VerificarInputID(opcao) == false)
                 {
-                    notificador.ApresentarMensagem("ID não existe", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("ID não existe", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else if (repoEmp.VerificarAmigoRepetido(emprestimo) == true)
                 {
-                    notificador.ApresentarMensagem("Este amigo já fez um emprestimo", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Este amigo já fez um emprestimo", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -188,7 +176,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             }
 
             emprestimo.Amigo = new();
-            Amigo amigoSelecionado = telaAmigo.RepoAmigo.RetornarAmigoSelecionado(opcao);
+            Amigo amigoSelecionado = telaAmigo.RepoAmigo.RetornarObjetoSelecionado(opcao);
 
             emprestimo.Amigo = amigoSelecionado;
 
@@ -197,7 +185,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             //Escolhendo Revista
             Console.WriteLine("Escolha a revista: \n");
 
-            if (telaRevista.VisualizarRevistasCadastradas() == false)
+            if (telaRevista.VisualizarObjetosCadastrados() == false)
             {
                 return null;
             }
@@ -205,11 +193,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true)
             {
                 Console.Write("\nDigite um número: ");
-                try { opcao = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { opcao = int.Parse(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (telaRevista.RepoRevista.VerificarInputNumeroRevista(opcao) == false)
                 {
-                    notificador.ApresentarMensagem("O número não existe", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("O número não existe", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -217,7 +205,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             }
 
             emprestimo.Revista = new();
-            Revista revistaSelecionada = TelaRevista.RepoRevista.RetornarRevistaSelecionada(opcao);
+            Revista revistaSelecionada = TelaRevista.RepoRevista.RetornarObjetoSelecionado(opcao);
 
             emprestimo.Revista = revistaSelecionada;
 
@@ -226,11 +214,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true)
             {
                 Console.Write("Digite a data que o amigo pegou: ");
-                try { DateTime.TryParse(Console.ReadLine(), out emprestimo.dataPegou); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { DateTime.TryParse(Console.ReadLine(), out emprestimo.dataPegou); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (emprestimo.ValidarDataPegou() == Emprestimo.StatusValidacao.inválido)
                 {
-                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -240,11 +228,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true)
             {
                 Console.Write("Digite a data que devolveu: ");
-                try { DateTime.TryParse(Console.ReadLine(), out emprestimo.dataPegou); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { DateTime.TryParse(Console.ReadLine(), out emprestimo.dataPegou); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (emprestimo.ValidarDataDevolveu() == Emprestimo.StatusValidacao.inválido)
                 {
-                    notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Campo inválido\n", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -257,11 +245,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             while (true) 
             {
                 Console.Write("Digite um número: ");
-                try { opcao = int.Parse(Console.ReadLine()); } catch (Exception) { notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
+                try { opcao = int.Parse(Console.ReadLine()); } catch (Exception) { Notificador.ApresentarMensagem("Formato inválido\n", Notificador.Mensagem.erro); continue; }
 
                 if (opcao != 1 && opcao != 2)
                 {
-                    notificador.ApresentarMensagem("Opção inválida", Notificador.Mensagem.atencao);
+                    Notificador.ApresentarMensagem("Opção inválida", Notificador.Mensagem.atencao);
                     continue;
                 }
                 else
@@ -280,7 +268,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
 
             return emprestimo;
         }
-        #endregion
+
     }
 
 }
