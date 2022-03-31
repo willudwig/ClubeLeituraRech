@@ -4,37 +4,28 @@
     {
         static int contadorCaixa;
         
-        int numero;
-        string cor;
-        string etiqueta;
+        public int numero;
+        string _cor;
+        string _etiqueta;
 
-        public int Numero
-        {
-            get { return numero; }
-            set { numero = value; }
-        }
+        public int Numero { get { return numero; } }
+        public string Cor { get { return _cor; } }
+        public string Etiqueta { get { return _etiqueta; } }
 
-        public string Cor
-        {
-            get { return cor; }
-            set { cor = value; }
-        }
-
-        public string Etiqueta
-        {
-            get { return etiqueta; }
-            set { etiqueta = value; }
-        }
-
-        public Caixa()
+        public Caixa(string cor, string etiqueta)
         {
             numero = ++contadorCaixa;
+
+            _cor = cor;
+            _etiqueta = etiqueta;
         }
+
+        #region validações
         public Status ValidarEtiqueta()
         {
             Status validacao = (Status)0;
 
-            if (string.IsNullOrEmpty(etiqueta))
+            if (string.IsNullOrEmpty(_etiqueta))
                 validacao = (Status)1;
 
             return validacao;
@@ -44,15 +35,16 @@
         {
             Status validacao = (Status)0;
 
-            if (string.IsNullOrEmpty(cor))
+            if (string.IsNullOrEmpty(_cor))
                 validacao = (Status)1;
 
-            if (cor.Contains("0") || cor.Contains("1") || cor.Contains("2") || cor.Contains("3") || cor.Contains("4") || cor.Contains("5") || cor.Contains("6") || cor.Contains("7") || cor.Contains("8") || cor.Contains("9"))
+            if (_cor.Contains("0") || _cor.Contains("1") || _cor.Contains("2") || _cor.Contains("3") || _cor.Contains("4") || _cor.Contains("5") || _cor.Contains("6") || _cor.Contains("7") || _cor.Contains("8") || _cor.Contains("9"))
                 validacao = (Status)1;
 
             return validacao;
         }
 
         public enum Status { válido, inválido }
+        #endregion
     }
 }

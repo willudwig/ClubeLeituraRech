@@ -7,43 +7,19 @@ namespace ClubeLeitura.ConsoleApp
     public class Revista
     {
         static int contadorRevista; 
-        int numeroRevista;
-        string colecao;
-        int edicao;
-        int ano;
-        Caixa caixa;
 
-        public int NumeroRevista  
-        {
-            get { return numeroRevista; }
-            set { numeroRevista = value; }
-        }
-        public string Colecao     
-        {
-            get { return colecao; }
-            set { colecao = value; }
-        }
-        public int Edicao         
-        {
-            get { return edicao; }
-            set { edicao = value; }
-        }
-        public int Ano            
-        {
-            get { return ano; }
-            set { ano = value; }
-         }
-        public Caixa Caixa
-        {
-            get { return caixa; }
-            set { caixa = value; }
-        }
+        public int numeroRevista;
+        public string colecao;
+        public int edicao;
+        public int ano;
+        public Caixa caixa;
 
         public Revista()
         {
             numeroRevista = ++contadorRevista;
         }
 
+        #region validações
         public Status ValidarAno()
         {
             Status validacao = (Status)0 ;
@@ -84,5 +60,6 @@ namespace ClubeLeitura.ConsoleApp
         }
 
         public enum Status { válido, inválido}
+        #endregion
     }
 }

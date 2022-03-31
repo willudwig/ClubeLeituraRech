@@ -13,7 +13,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
 
         public override void Inserir(Revista revista)
         {
-            revistas[posicaoVazia] = revista;
+            revistas[PosicaoVazia] = revista;
         }
 
         public override void Editar(Revista novaRevista, int numrevista)
@@ -23,7 +23,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             {
                 if (revistas[i] != null)
                 {
-                    if (revistas[i].NumeroRevista == numrevista)
+                    if (revistas[i].numeroRevista == numrevista)
                     {
                         revistas[i] = novaRevista;
                         break;
@@ -40,7 +40,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             {
                 if (revistas[i] != null)
                 {
-                    if (revistas[i].NumeroRevista == numrevista)
+                    if (revistas[i].numeroRevista == numrevista)
                     {
                         revistas[i] = null;
                         break;
@@ -58,11 +58,11 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
                 if (revistas[i] == null)
                     continue;
 
-                Console.WriteLine("Numero ID: " + revistas[i].NumeroRevista);
-                Console.WriteLine("Coleção: " + revistas[i].Colecao);
-                Console.WriteLine("Edição: " + revistas[i].Edicao);
-                Console.WriteLine("Ano: " + revistas[i].Ano);
-                Console.WriteLine("Caixa: " + revistas[i].Caixa.Cor);
+                Console.WriteLine("Numero ID: " + revistas[i].numeroRevista);
+                Console.WriteLine("Coleção: " + revistas[i].colecao);
+                Console.WriteLine("Edição: " + revistas[i].edicao);
+                Console.WriteLine("Ano: " + revistas[i].ano);
+                Console.WriteLine("Caixa: " + revistas[i].caixa.Cor);
                 Console.WriteLine();
             }
         }
@@ -73,7 +73,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
             {
                 if (revistas[i] != null)
                 {
-                    if (revistas[i].NumeroRevista == opcao)
+                    if (revistas[i].numeroRevista == opcao)
                     {
                         return revistas[i];
                     }
@@ -109,7 +109,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloRevista
                 {
                     continue;
                 }
-                else if (revistas[i].NumeroRevista == numeroDigitado)
+                else if (revistas[i].numeroRevista == numeroDigitado)
                 {
                     return true;
                 }

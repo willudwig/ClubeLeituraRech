@@ -14,7 +14,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
 
         public override void Inserir(Amigo amigo)
         {
-            amigos[posicaoVazia] = amigo;
+            amigos[PosicaoVazia] = amigo;
         }
 
         public override void Editar(Amigo novoAmigo, int id)
@@ -60,10 +60,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
                     continue;
 
                 Console.WriteLine("ID: " + amigos[i].Id);
-                Console.WriteLine("Nome: " + amigos[i].Nome);
-                Console.WriteLine("Responsável: " + amigos[i].NomeResp);
-                Console.WriteLine("Telefone: " + amigos[i].Telefone);
-                Console.WriteLine("Endereço: " + amigos[i].Endereco);
+                Console.WriteLine("Nome: " + amigos[i].nome);
+                Console.WriteLine("Responsável: " + amigos[i].nomeResp);
+                Console.WriteLine("Telefone: " + amigos[i].telefone);
+                Console.WriteLine("Endereço: " + amigos[i].endereco);
                 Console.WriteLine();
             }
         }
@@ -111,7 +111,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloAmigo
                 {
                     continue;
                 }
-                else if (amigos[i].Nome == amigoInserido.Nome)
+                else if (amigos[i].nome == amigoInserido.nome)
                 {
                     return true;
                 }

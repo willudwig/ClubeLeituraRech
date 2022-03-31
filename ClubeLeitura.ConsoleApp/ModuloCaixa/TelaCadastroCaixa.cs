@@ -9,14 +9,7 @@ namespace ClubeLeitura.ConsoleApp
     public class TelaCadastroCaixa : TelaCadastro
     {
         Caixa caixa;
-        RepositorioCaixa repoCaixa = new();
-
-        public RepositorioCaixa RepoCaixa
-        {
-            get { return repoCaixa; }
-            set { repoCaixa = value; }
-
-        }
+        public RepositorioCaixa repoCaixa = new();
 
         public override string MostrarOpcoes()
         {
@@ -42,9 +35,7 @@ namespace ClubeLeitura.ConsoleApp
         {
             MostrarTitulo("Inserindo nova Caixa");
 
-            caixa = InputarCaixa();
-
-            repoCaixa.Inserir(caixa);
+            repoCaixa.Inserir( InputarCaixa() );
 
             Notificador.ApresentarMensagem("Caixa inserida com sucesso!", Notificador.Mensagem.sucesso);
         }
@@ -75,7 +66,7 @@ namespace ClubeLeitura.ConsoleApp
             }
        
             caixa = InputarCaixa();
-            caixa.Numero = numCaixa;
+            caixa.numero = numCaixa;
             repoCaixa.Editar(caixa, caixa.Numero);
 
             Notificador.ApresentarMensagem("Caixa editada com sucesso", Notificador.Mensagem.sucesso);
@@ -130,12 +121,15 @@ namespace ClubeLeitura.ConsoleApp
 
         private Caixa InputarCaixa()
         {
-            Caixa caixa = new();
+            string cor = "";
+            string etiqueta = "";
+            
+            caixa = new Caixa(cor, etiqueta);
 
             while (true)
             {
                 Console.Write("Digite a cor: ");
-                caixa.Cor = Console.ReadLine();
+                cor = Console.ReadLine();
 
                 if (caixa.ValidarCor() == Caixa.Status.inválido)
                 {
@@ -149,7 +143,7 @@ namespace ClubeLeitura.ConsoleApp
             while (true)
             {
                 Console.Write("Digite a etiqueta: ");
-                caixa.Etiqueta = Console.ReadLine();
+                etiqueta = Console.ReadLine();
 
                 if (repoCaixa.VerificarMesmaEtiquetasInserir(caixa) == true)
                 {
@@ -165,7 +159,7 @@ namespace ClubeLeitura.ConsoleApp
                     break;
             }
 
-            return caixa;
+            return caixa; 
         }
 
 

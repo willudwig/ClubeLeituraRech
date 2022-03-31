@@ -11,10 +11,9 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
     {
         Caixa[] caixas = new Caixa[50];
 
-
         public override void Inserir(Caixa caixa)
         {
-            caixas[posicaoVazia] = caixa;
+            caixas[PosicaoVazia] = caixa;
         }
 
         public override void Editar(Caixa novaCaixa, int numcaixa)
@@ -133,7 +132,6 @@ namespace ClubeLeitura.ConsoleApp.ModuloCaixa
             return false;
         }
         //=================================================================
-
-       
+    
     }
 }

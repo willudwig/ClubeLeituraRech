@@ -11,10 +11,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
     public class RepositorioEmprestimo : Repositorio<Emprestimo>
     {
         Emprestimo[] emprestimos = new Emprestimo[50];
-        
+
         public override void Inserir(Emprestimo emprestimo)
         {
-           emprestimos[posicaoVazia] = emprestimo;
+           emprestimos[PosicaoVazia] = emprestimo;
         }
 
         public override void Editar(Emprestimo novoEmp, int numEmp)
@@ -23,7 +23,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             {
                 if (emprestimos[i] != null)
                 {
-                    if (emprestimos[i].NumeroEmp == numEmp)
+                    if (emprestimos[i].numeroEmp == numEmp)
                     {
                         emprestimos[i] = novoEmp;
                         break;
@@ -40,7 +40,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             {
                 if (emprestimos[i] != null)
                 {
-                    if (emprestimos[i].NumeroEmp == numEmp)
+                    if (emprestimos[i].numeroEmp == numEmp)
                     {
                         emprestimos[i] = null;
                         break;
@@ -58,10 +58,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                 if (emprestimos[i] == null)
                     continue;
 
-                Console.WriteLine("Número: " + emprestimos[i].NumeroEmp);
-                Console.WriteLine("Amigo: " + emprestimos[i].Amigo.Nome);
-                Console.WriteLine("Revista: " + emprestimos[i].Revista.Colecao);
-                Console.WriteLine("Edição da revista: " + emprestimos[i].Revista.Edicao);
+                Console.WriteLine("Número: " + emprestimos[i].numeroEmp);
+                Console.WriteLine("Amigo: " + emprestimos[i].amigo.nome);
+                Console.WriteLine("Revista: " + emprestimos[i].revista.colecao);
+                Console.WriteLine("Edição da revista: " + emprestimos[i].revista.edicao);
                 Console.WriteLine();
             }
         }
@@ -72,7 +72,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             {
                 if (emprestimos[i] != null)
                 {
-                    if (emprestimos[i].NumeroEmp == numeroEmp)
+                    if (emprestimos[i].numeroEmp == numeroEmp)
                     {
                         return emprestimos[i];
                     }
@@ -83,8 +83,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             return null;
         }
 
-
-        //Validações
+        //Veridicações
         public bool VerificarVetorEmprestimosVazio()
         {
             for (int i = 0; i < emprestimos.Length; i++)
@@ -109,7 +108,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                 {
                     continue;
                 }
-                else if (emprestimos[i].NumeroEmp == numeroDigitado)
+                else if (emprestimos[i].numeroEmp == numeroDigitado)
                 {
                     return true;
                 }
@@ -123,7 +122,7 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             {
                 if (emprestimos[i] != null)
                 {
-                    if(emprestimos[i].Amigo.Nome == emp.Amigo.Nome)
+                    if(emprestimos[i].amigo.nome == emp.amigo.nome)
                     {
                         return true;
                     }

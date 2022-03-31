@@ -4,21 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ClubeLeitura.ConsoleApp.Superclasse
 {
     abstract public class Repositorio <T>
     {
-        T[] registro;
+        T[] _registro;
        
-        public int posicaoVazia;
+        int _posicaoVazia;
+
+        public int PosicaoVazia { get { return _posicaoVazia;} }
 
         private void ObterPosicaoVazia()
         {
-            for (int i = 0; i < registro.Length; i++)
+            for (int i = 0; i < _registro.Length; i++)
             {
-                if (registro[i] == null)
+                if (_registro[i] == null)
                 {
-                    posicaoVazia = i;
+                    _posicaoVazia = i;
                     break;
                 }
             }
@@ -26,7 +29,7 @@ namespace ClubeLeitura.ConsoleApp.Superclasse
 
         public virtual void Inserir(T objeto)
         {
-            registro[posicaoVazia] = objeto;
+            _registro[_posicaoVazia] = objeto;
         }
 
         public abstract void Editar(T objeto, int id);

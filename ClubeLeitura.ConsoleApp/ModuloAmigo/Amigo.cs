@@ -10,49 +10,18 @@ namespace ClubeLeitura.ConsoleApp
     {
         static int contadorAmigo;
 
-        int id;
-        string nome;
-        string nomeResp;
-        string endereco;
-        int telefone;
-
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
-
-
-        public string Nome
-        {
-            get { return nome; }
-            set { nome = value; }
-        }
-
-        public string NomeResp
-        {
-            get { return nomeResp; }
-            set { nomeResp = value; }
-        }
-
-        public string Endereco
-        {
-            get { return endereco; }
-            set { endereco = value; }
-        }
-
-        public int Telefone
-        {
-            get { return telefone; }
-            set { telefone = value; }
-        }
+        public int id;
+        public string nome;
+        public string nomeResp;
+        public string endereco;
+        public int telefone;
 
         public Amigo()
         {
             id = ++contadorAmigo;
         }
 
-
+        #region validações
         public Status ValidarNome()
         {
             Status validacao = (Status)0;
@@ -103,5 +72,6 @@ namespace ClubeLeitura.ConsoleApp
         }
 
         public enum Status { válido, inválido }
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace ClubeLeitura.ConsoleApp
             TelaCadastroEmprestimo telaCadastroEmprestimo = new();
 
             telaCadastroRevista.TelaCaixa = telaCadastroCaixa;
-            telaCadastroRevista.RepositorioCaixa = telaCadastroCaixa.RepoCaixa;
+            telaCadastroRevista.RepositorioCaixa = telaCadastroCaixa.repoCaixa;
 
             telaCadastroEmprestimo.TelaAmigo = telaCadastroAmigo;
             telaCadastroEmprestimo.TelaRevista = telaCadastroRevista;

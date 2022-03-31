@@ -14,37 +14,24 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
     {
         static int contadorEmprestimo;
         
-        int numeroEmp;
-        Amigo amigo;
-        Revista revista;
+        public int numeroEmp;
+        public Amigo amigo;
+        public Revista revista;
         public DateTime dataPegou;
         public DateTime dataDevolveu;
         public StatusEmprestimo status;
-
-        public Amigo Amigo
-        {
-            get { return amigo; }
-            set { amigo = value; }
-        }
-
-        public Revista Revista
-        {
-            get { return revista; }
-            set { revista = value; }
-        }
-
-        public int NumeroEmp
-        {
-            get { return numeroEmp; }
-            set { numeroEmp = value; }
-        }
 
         public Emprestimo()
         {
             numeroEmp = ++contadorEmprestimo;
         }
 
- 
+        public enum StatusEmprestimo
+        {
+            Aberto, Fechado
+        }
+
+        #region validações
         public StatusValidacao ValidarDataPegou()
         {
             StatusValidacao validacao = (StatusValidacao)0;
@@ -66,11 +53,9 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
         }
 
         public enum StatusValidacao { válido, inválido }
+        #endregion
 
-        public enum StatusEmprestimo
-        {
-            Aberto, Fechado
-        } 
+       
        
     }
 }

@@ -89,8 +89,8 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
             }
 
             emprestimo = InputarEmprestimo();
-            emprestimo.NumeroEmp = numEmprestimo;
-            repoEmp.Editar(emprestimo, emprestimo.NumeroEmp);
+            emprestimo.numeroEmp = numEmprestimo;
+            repoEmp.Editar(emprestimo, emprestimo.numeroEmp);
 
             Notificador.ApresentarMensagem("Emprestimo editado com sucesso", Notificador.Mensagem.sucesso);
         }
@@ -175,10 +175,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                     break;
             }
 
-            emprestimo.Amigo = new();
+            emprestimo.amigo = new();
             Amigo amigoSelecionado = telaAmigo.RepoAmigo.RetornarObjetoSelecionado(opcao);
 
-            emprestimo.Amigo = amigoSelecionado;
+            emprestimo.amigo = amigoSelecionado;
 
             //============ fim amigo
 
@@ -204,10 +204,10 @@ namespace ClubeLeitura.ConsoleApp.ModuloEmprestimo
                     break;
             }
 
-            emprestimo.Revista = new();
+            emprestimo.revista = new();
             Revista revistaSelecionada = TelaRevista.RepoRevista.RetornarObjetoSelecionado(opcao);
 
-            emprestimo.Revista = revistaSelecionada;
+            emprestimo.revista = revistaSelecionada;
 
             //============ fim revista
 
